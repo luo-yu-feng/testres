@@ -1,0 +1,32 @@
+syntax = "proto3";
+package proto;
+
+message DataPoint {
+  //识别码（规则id或任务id或数据转发客户端id等）
+  string id = 1;
+  //数据点所属模块
+  Module module = 2;
+  //是否成功
+  bool isSuccess = 3;
+  //用户ID
+  string userId = 4;
+  //耗时,单位ms
+  uint64  duration = 5;
+  //场景联动操作类型
+  LinkType linkType = 6;
+  //其他拓展信息
+  map<string, string> tags = 7;
+}
+
+enum LinkType {
+  TRIGGER = 0; //触发
+  FILTER = 1;  //过滤
+}
+
+enum Module {
+  DATAUPOLAD = 0;//数据上传
+  DATAFORWARD = 1;//数据转发
+  DATAANALYSIS = 2;//数据分析
+  SCENELINKAGE = 3;//场景联动
+  //待续......
+}
